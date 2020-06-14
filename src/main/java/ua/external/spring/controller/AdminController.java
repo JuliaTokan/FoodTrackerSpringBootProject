@@ -62,7 +62,7 @@ public class AdminController {
 
     @PostMapping(value = "/product/edit")
     public String edit(HttpServletRequest request, @Valid ProductDTO product) {
-        Boolean isPublic = request.getParameter("public")==null?false:request.getParameter("public").equals("on")?true:false;
+        Boolean isPublic = request.getParameter(PARAM_PUBLIC)==null?false:request.getParameter(PARAM_PUBLIC).equals("on")?true:false;
         product.setCommon(isPublic);
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

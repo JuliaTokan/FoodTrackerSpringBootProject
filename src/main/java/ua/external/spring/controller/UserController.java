@@ -29,6 +29,8 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+
+import static ua.external.spring.util.сonst.Constant.*;
 import static ua.external.spring.util.сonst.Pages.*;
 
 @Controller
@@ -74,7 +76,7 @@ public class UserController {
         }
         try {
             ObjectMapper mapper = new ObjectMapper();
-            model.addAttribute("weekInfo", mapper.writeValueAsString(weekInfo));
+            model.addAttribute(PARAM_WEEK_INFO, mapper.writeValueAsString(weekInfo));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -84,7 +86,7 @@ public class UserController {
 
     @PostMapping(value = "/product")
     public String product(HttpServletRequest request, @Valid ProductDTO product) {
-        Boolean isPublic = request.getParameter("public") == null ? false : request.getParameter("public").equals("on") ? true : false;
+        Boolean isPublic = request.getParameter(PARAM_PUBLIC) == null ? false : request.getParameter(PARAM_PUBLIC).equals("on") ? true : false;
         product.setCommon(isPublic);
         product.setDeleted(false);
 
@@ -128,8 +130,8 @@ public class UserController {
     }
 
     private void buildMeals(HttpServletRequest request, MealsDTO mealsDTO) {
-        Long product_id = Long.parseLong(request.getParameter("food"));
-        Long eatPeriod_id = Long.parseLong(request.getParameter("eat_period"));
+        Long product_id = Long.parseLong(request.getParameter(PARAM_FOOD));
+        Long eatPeriod_id = Long.parseLong(request.getParameter(PARAM_EAT_PERIOD));
 
         EatPeriod eatPeriod = eatPeriodService.findEatPeriodById(eatPeriod_id).get();
         Product product = productService.findProductById(product_id).get();

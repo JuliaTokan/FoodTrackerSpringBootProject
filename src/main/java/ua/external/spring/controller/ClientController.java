@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ua.external.spring.dto.ClientDTO;
 import ua.external.spring.entity.*;
 import ua.external.spring.service.*;
+
+import static ua.external.spring.util.сonst.Constant.*;
 import static ua.external.spring.util.сonst.Pages.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -90,9 +92,9 @@ public class ClientController {
     }
 
     private void buildClient(HttpServletRequest request, ClientDTO clientDTO) {
-        Long gender_id = Long.parseLong(request.getParameter("gender"));
-        Long activity_id = Long.parseLong(request.getParameter("activity"));
-        Long nutritionGoal_id = Long.parseLong(request.getParameter("nutr_goal"));
+        Long gender_id = Long.parseLong(request.getParameter(PARAM_GENDER));
+        Long activity_id = Long.parseLong(request.getParameter(PARAM_ACTIVITY));
+        Long nutritionGoal_id = Long.parseLong(request.getParameter(PARAM_NUTRITION_GOAL));
 
         Gender gender = genderService.findGenderById(gender_id).get();
         Activity activity = activityService.findActivityById(activity_id).get();

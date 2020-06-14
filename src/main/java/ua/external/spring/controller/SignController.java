@@ -15,7 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.external.spring.dto.UserDTO;
+
+import static ua.external.spring.util.сonst.Constant.PARAM_LOGIN;
+import static ua.external.spring.util.сonst.Constant.PARAM_USER;
 import static ua.external.spring.util.сonst.Pages.*;
+
+import ua.external.spring.service.EmailService;
 import ua.external.spring.service.UserRoleService;
 import ua.external.spring.service.UserService;
 
@@ -31,6 +36,9 @@ public class SignController {
 
     @Autowired
     UserRoleService userRoleService;
+
+    @Autowired
+    EmailService emailService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -55,13 +63,13 @@ public class SignController {
 
         if (!userService.createUser(user)) {
             model.addAttribute("error_user", true);
-            model.addAttribute("login", user.getLogin());
+            model.addAttribute(PARAM_LOGIN, user.getLogin());
             return REGISTRATION_PAGE;
         }
         authWithAuthManager(request, user.getLogin(), password);
-        session.setAttribute("user", user);
+        session.setAttribute(PARAM_USER, user);
         logger.info("create user with id = "+user.getId());
-        //emailSenderService.sendWelcomeEmail(email);
+        emailService.sendWelcomeLetter(user.getLogin());
         return "redirect:/client/info";
     }
 
