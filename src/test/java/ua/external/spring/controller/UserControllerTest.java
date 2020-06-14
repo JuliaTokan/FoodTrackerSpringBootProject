@@ -62,4 +62,38 @@ public class UserControllerTest {
                 .param("password", "qwe12345"))
                 .andDo(print()).andExpect(status().is3xxRedirection());
     }
+
+    @Test
+    @WithUserDetails("test.user@gmail.com")
+    public void validProductTest() throws Exception {
+        this.mockMvc.perform(post("/user/product")
+                .param("name", "TestProduct")
+                .param("calories", "-10")
+                .param("protein", "5000")
+                .param("fats", "")
+                .param("carbohydrates", ""))
+                .andDo(print()).andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    @WithUserDetails("test.user@gmail.com")
+    public void createProductTest() throws Exception {
+        this.mockMvc.perform(post("/user/product")
+                .param("name", "TestProduct")
+                .param("calories", "333")
+                .param("protein", "46.5")
+                .param("fats", "56.3")
+                .param("carbohydrates", "38.6"))
+                .andDo(print()).andExpect(status().is3xxRedirection());
+    }
+
+    @Test
+    @WithUserDetails("test.user@gmail.com")
+    public void createMealsTest() throws Exception {
+        this.mockMvc.perform(post("/user/meals")
+                .param("food", "27")
+                .param("weight", "300")
+                .param("eat_period", "13"))
+                .andDo(print()).andExpect(status().isOk());
+    }
 }

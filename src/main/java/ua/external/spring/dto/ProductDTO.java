@@ -28,22 +28,22 @@ public class ProductDTO {
     private User user;
 
     @NonNull
-    @Min(0)
-    @Max(2000)
+    @Min(value = 0)
+    @Max(value = 2000)
     private Integer calories;
 
     @NonNull
-    @Min(0)
-    @Max(1000)
+    @Min(value = 0)
+    @Max(value = 1000)
     private Double protein;
 
     @NonNull
-    @Min(0)
-    @Max(1000)
+    @Min(value = 0)
+    @Max(value = 1000)
     private Double fats;
 
-    @Min(0)
-    @Max(1000)
+    @Min(value = 0)
+    @Max(value = 1000)
     private Double carbohydrates;
 
     private Boolean common;

@@ -98,7 +98,7 @@ public class FoodTrackerSpringApplication {
         return new CommandLineRunner() {
             @Override
             public void run(String... strings) throws Exception {
-                User user = userService.findUserByLogin("yulia.tokan.11@gmail.com").get();
+                User user = userService.findUserByLogin("test.user@gmail.com").get();
                 UserRole userRole = userRoleService.findUserRoleByName("ADMIN").get();
                 user.setRole(userRole);
                 userRepository.save(user);
