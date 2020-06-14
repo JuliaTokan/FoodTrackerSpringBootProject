@@ -8,9 +8,7 @@ import ua.external.spring.entity.Gender;
 import ua.external.spring.entity.NutritionGoal;
 import ua.external.spring.util.NutritionCalculator;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Data
 @AllArgsConstructor
@@ -25,10 +23,19 @@ public class ClientDTO {
     private Gender gender;
 
     //add
+    @NotNull
+    @Min(value = 10)
+    @Max(value = 99)
     private Integer age;
     //add
+    @NotNull
+    @Min(value = 90)
+    @Max(value = 220)
     private Double height;
     //add
+    @NotNull
+    @Min(value = 30)
+    @Max(value = 250)
     private Double weight;
 
     private NutritionGoal nutritionGoal;

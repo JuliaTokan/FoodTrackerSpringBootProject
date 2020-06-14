@@ -19,12 +19,13 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@WithUserDetails("yulia.tokan.11@gmail.com")
 @TestPropertySource("/application-test.properties")
 public class UserControllerTest {
 
@@ -32,7 +33,8 @@ public class UserControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    public void securityTest() throws Exception {
+    @WithUserDetails("yulia.tokan.11@gmail.com")
+    public void getProductsTest() throws Exception {
         String content = this.mockMvc.perform(get("/get_products"))
                 .andDo(print()).andReturn().getResponse().getContentAsString();
 
@@ -43,5 +45,21 @@ public class UserControllerTest {
     protected <T> T mapFromJson(String json, Class<T> clazz) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(json, clazz);
+    }
+
+    @Test
+    public void validateUserTest() throws Exception {
+        this.mockMvc.perform(post("/sign/up")
+                .param("login", "yulka-pulka")
+                .param("password", "1234"))
+                .andDo(print()).andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void createUserTest() throws Exception {
+        this.mockMvc.perform(post("/sign/up")
+                .param("login", "test.user@gmail.com")
+                .param("password", "qwe12345"))
+                .andDo(print()).andExpect(status().is3xxRedirection());
     }
 }
