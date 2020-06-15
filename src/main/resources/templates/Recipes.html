@@ -47,27 +47,32 @@
                             <div class="main-menu   d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="/">Home</a></li>
-                                        <li><a href="/info/about">About</a></li>
-                                        <li><a href="/info/recipes">Recipes</a></li>
-                                        <li hidden name="sign"><a href="/sign/up">Sign</a></li>
+                                        <li><a href="/" th:text="#{nav.home}">Home</a></li>
+                                        <li><a href="/info/about" th:text="#{nav.about}">About</a></li>
+                                        <li><a href="/info/recipes" th:text="#{nav.recipes}">Recipes</a></li>
+                                        <li hidden name="sign"><a href="/sign/up" th:text="#{nav.sign}">Sign</a></li>
                                         <li hidden name="user"><a href="#">user<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li hidden name="admin"><a href="/admin/products">Admin Page</a></li>
-                                                <li><a href="/user/meals">Daily Eating</a></li>
-                                                <li><a href="/user/progress">Progress</a></li>
-                                                <li><a href="/client/edit">Edit</a></li>
-                                                <li><a href="/sign/out">Logout</a></li>
+                                                <li hidden name="admin"><a href="/admin/products" th:text="#{nav.admin.page}">Admin Page</a></li>
+                                                <li><a href="/user/meals" th:text="#{nav.daily.eating}">Daily Eating</a></li>
+                                                <li><a href="/user/progress" th:text="#{nav.progress}">Progress</a></li>
+                                                <li><a href="/client/edit" th:text="#{nav.edit}">Edit</a></li>
+                                                <li><a href="/sign/out" th:text="#{nav.logout}">Logout</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="/info/contact">Contact</a></li>
+                                        <li><a href="/info/contact" th:text="#{nav.contact}">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                            <div class="search_icon">
-                                <a href="/locale/set?lang=ru_RU">
+                            <div class="search_icon" th:if="${#locale.toString() == 'ru_RU'}">
+                                <a th:href="@{${#httpServletRequest.requestURI}(lang='en_US')}">
+                                    <i>EN</i>
+                                </a>
+                            </div>
+                            <div class="search_icon" th:if="${#locale.toString() == 'en_US'}">
+                                <a th:href="@{${#httpServletRequest.requestURI}(lang='ru_RU')}">
                                     <i>RU</i>
                                 </a>
                             </div>
@@ -90,10 +95,10 @@
                         <div class="recepie_thumb">
                             <img src="/static/img/recepie/recpie_1.png" alt="">
                         </div>
-                        <h3>${recipe1}</h3>
-                        <span>${type}</span>
-                        <p>${time}</p>
-                        <a href="#" class="line_btn">${btn_full}</a>
+                        <h3 th:text="#{recipes.name.recipe1}"></h3>
+                        <span th:text="#{recipes.type.appetizer}"></span>
+                        <p th:text="#{recipes.time}"></p>
+                        <a href="#" class="line_btn" th:text="#{recipes.btn.full}"></a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -101,10 +106,10 @@
                         <div class="recepie_thumb">
                             <img src="/static/img/recepie/recpie_2.png" alt="">
                         </div>
-                        <h3>${recipe2}</h3>
-                        <span>${type}</span>
-                        <p>${time}</p>
-                        <a href="#" class="line_btn">${btn_full}</a>
+                        <h3 th:text="#{recipes.name.recipe2}"></h3>
+                        <span th:text="#{recipes.type.appetizer}"></span>
+                        <p th:text="#{recipes.time}"></p>
+                        <a href="#" class="line_btn" th:text="#{recipes.btn.full}"></a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -112,10 +117,10 @@
                         <div class="recepie_thumb">
                             <img src="/static/img/recepie/recpie_3.png" alt="">
                         </div>
-                        <h3>${recipe3}</h3>
-                        <span>${type}</span>
-                        <p>${time}</p>
-                        <a href="#" class="line_btn">${btn_full}</a>
+                        <h3 th:text="#{recipes.name.recipe3}"></h3>
+                        <span th:text="#{recipes.type.appetizer}"></span>
+                        <p th:text="#{recipes.time}"></p>
+                        <a href="#" class="line_btn" th:text="#{recipes.btn.full}"></a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -123,10 +128,10 @@
                         <div class="recepie_thumb">
                             <img src="/static/img/recepie/recpie_1.png" alt="">
                         </div>
-                        <h3>${recipe1}</h3>
-                        <span>${type}</span>
-                        <p>${time}</p>
-                        <a href="#" class="line_btn">${btn_full}</a>
+                        <h3 th:text="#{recipes.name.recipe1}"></h3>
+                        <span th:text="#{recipes.type.appetizer}"></span>
+                        <p th:text="#{recipes.time}"></p>
+                        <a href="#" class="line_btn" th:text="#{recipes.btn.full}"></a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -134,10 +139,10 @@
                         <div class="recepie_thumb">
                             <img src="/static/img/recepie/recpie_2.png" alt="">
                         </div>
-                        <h3>${recipe2}</h3>
-                        <span>${type}</span>
-                        <p>${time}</p>
-                        <a href="#" class="line_btn">${btn_full}</a>
+                        <h3 th:text="#{recipes.name.recipe2}"></h3>
+                        <span th:text="#{recipes.type.appetizer}"></span>
+                        <p th:text="#{recipes.time}"></p>
+                        <a href="#" class="line_btn" th:text="#{recipes.btn.full}"></a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -145,10 +150,10 @@
                         <div class="recepie_thumb">
                             <img src="/static/img/recepie/recpie_3.png" alt="">
                         </div>
-                        <h3>${recipe3}</h3>
-                        <span>${type}</span>
-                        <p>${time}</p>
-                        <a href="#" class="line_btn">${btn_full}</a>
+                        <h3 th:text="#{recipes.name.recipe3}"></h3>
+                        <span th:text="#{recipes.type.appetizer}"></span>
+                        <p th:text="#{recipes.time}"></p>
+                        <a href="#" class="line_btn" th:text="#{recipes.btn.full}"></a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -156,10 +161,10 @@
                         <div class="recepie_thumb">
                             <img src="/static/img/recepie/recpie_1.png" alt="">
                         </div>
-                        <h3>${recipe1}</h3>
-                        <span>${type}</span>
-                        <p>${time}</p>
-                        <a href="#" class="line_btn">${btn_full}</a>
+                        <h3 th:text="#{recipes.name.recipe1}"></h3>
+                        <span th:text="#{recipes.type.appetizer}"></span>
+                        <p th:text="#{recipes.time}"></p>
+                        <a href="#" class="line_btn" th:text="#{recipes.btn.full}"></a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -167,10 +172,10 @@
                         <div class="recepie_thumb">
                             <img src="/static/img/recepie/recpie_2.png" alt="">
                         </div>
-                        <h3>${recipe2}</h3>
-                        <span>${type}</span>
-                        <p>${time}</p>
-                        <a href="#" class="line_btn">${btn_full}</a>
+                        <h3 th:text="#{recipes.name.recipe2}"></h3>
+                        <span th:text="#{recipes.type.appetizer}"></span>
+                        <p th:text="#{recipes.time}"></p>
+                        <a href="#" class="line_btn" th:text="#{recipes.btn.full}"></a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -178,10 +183,10 @@
                         <div class="recepie_thumb">
                             <img src="/static/img/recepie/recpie_3.png" alt="">
                         </div>
-                        <h3>${recipe3}</h3>
-                        <span>${type}</span>
-                        <p>${time}</p>
-                        <a href="#" class="line_btn">${btn_full}</a>
+                        <h3 th:text="#{recipes.name.recipe3}"></h3>
+                        <span th:text="#{recipes.type.appetizer}"></span>
+                        <p th:text="#{recipes.time}"></p>
+                        <a href="#" class="line_btn" th:text="#{recipes.btn.full}"></a>
                     </div>
                 </div>
             </div>
@@ -195,9 +200,9 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="trand_info text-center">
-                        <p>${text_h2}</p>
-                        <h3>${text_h1}</h3>
-                        <a href="#" class="boxed-btn3">${btn_all}</a>
+                        <p th:text="#{recipes.text.h2}"></p>
+                        <h3 th:text="#{recipes.text.h1}"></h3>
+                        <a href="#" class="boxed-btn3" th:text="#{recipes.btn.all}"></a>
                     </div>
                 </div>
             </div>
@@ -206,7 +211,7 @@
     <!--/ latest_trand     -->
 
     <!-- download_app_area -->
-    <div class="download_app_area plus_padding">
+    <div class="download_app_area">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-6 col-md-6">
@@ -224,7 +229,7 @@
                 </div>
                 <div class="col-xl-6 col-md-6">
                     <div class="download_text">
-                        <h3>${download_app}</h3>
+                        <h3 th:text="#{recipes.download.app}"></h3>
                         <div class="download_android_apple">
                             <a class="active" href="#">
                                 <div class="download_link d-flex">
@@ -258,34 +263,31 @@
                 <div class="row">
                     <div class="col-xl-5 col-md-6 col-lg-5">
                         <div class="footer_widget text-center">
-                            <h3 class="footer_title">
-                                Our Mission
+                            <h3 class="footer_title" th:text="#{footer.mission}">
                             </h3>
-                            <p>At Eat&Fit, we focus on making sure you can log your meals as quickly and easily as possible. Because the easier we make it for you, the more likely you are to stay on track, and the more likely you are to succeed in your weight loss goals.</p>
+                            <p th:text="#{about.body}"></p>
                         </div>
                     </div>
 
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget text-center">
-                            <h3 class="footer_title">
-                                Navigation
+                            <h3 class="footer_title" th:text="#{footer.head}">
                             </h3>
                             <ul>
-                                <li><a href="/">Home</a></li>
-                                <li><a href="/info/about">About</a></li>
-                                <li><a href="/info/recipes">Recipes</a></li>
-                                <li><a href="/user/meals">Personal Info</a></li>
-                                <li><a href="/user/contact">Contact</a></li>
+                                <li><a href="/" th:text="#{footer.home}"></a></li>
+                                <li><a href="/info/about" th:text="#{footer.about}"></a></li>
+                                <li><a href="/info/recipes" th:text="#{footer.recipes}"></a></li>
+                                <li><a href="/user/meals" th:text="#{footer.personal.info}"></a></li>
+                                <li><a href="/user/contact" th:text="#{footer.contact}"></a></li>
                             </ul>
 
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6 col-lg-4">
                         <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Subscribe
+                            <h3 class="footer_title" th:text="#{footer.subscribe}">
                             </h3>
-                            <p class="newsletter_text">You can trust us. we only send promo offers,</p>
+                            <p class="newsletter_text" th:text="#{footer.subtext}"></p>
                             <form action="#" class="newsletter_form">
                                 <input type="text" placeholder="Enter your mail">
                                 <button type="submit"> <i class="ti-arrow-right"></i> </button>

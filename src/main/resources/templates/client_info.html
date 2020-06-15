@@ -53,27 +53,32 @@
                         <div class="main-menu   d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="/info/about">About</a></li>
-                                    <li><a href="/info/recipes">Recipes</a></li>
-                                    <li hidden name="sign"><a href="/sign/up">Sign</a></li>
+                                    <li><a href="/" th:text="#{nav.home}">Home</a></li>
+                                    <li><a href="/info/about" th:text="#{nav.about}">About</a></li>
+                                    <li><a href="/info/recipes" th:text="#{nav.recipes}">Recipes</a></li>
+                                    <li hidden name="sign"><a href="/sign/up" th:text="#{nav.sign}">Sign</a></li>
                                     <li hidden name="user"><a href="#">user<i class="ti-angle-down"></i></a>
                                         <ul class="submenu">
-                                            <li hidden name="admin"><a href="/admin/products">Admin Page</a></li>
-                                            <li><a href="/user/meals">Daily Eating</a></li>
-                                            <li><a href="/user/progress">Progress</a></li>
-                                            <li><a href="/client/edit">Edit</a></li>
-                                            <li><a href="/sign/out">Logout</a></li>
+                                            <li hidden name="admin"><a href="/admin/products" th:text="#{nav.admin.page}">Admin Page</a></li>
+                                            <li><a href="/user/meals" th:text="#{nav.daily.eating}">Daily Eating</a></li>
+                                            <li><a href="/user/progress" th:text="#{nav.progress}">Progress</a></li>
+                                            <li><a href="/client/edit" th:text="#{nav.edit}">Edit</a></li>
+                                            <li><a href="/sign/out" th:text="#{nav.logout}">Logout</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="/info/contact">Contact</a></li>
+                                    <li><a href="/info/contact" th:text="#{nav.contact}">Contact</a></li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                        <div class="search_icon">
-                            <a href="/locale/set?lang=ru_RU">
+                        <div class="search_icon" th:if="${#locale.toString() == 'ru_RU'}">
+                            <a th:href="@{${#httpServletRequest.requestURI}(lang='en_US')}">
+                                <i>EN</i>
+                            </a>
+                        </div>
+                        <div class="search_icon" th:if="${#locale.toString() == 'en_US'}">
+                            <a th:href="@{${#httpServletRequest.requestURI}(lang='ru_RU')}">
                                 <i>RU</i>
                             </a>
                         </div>
@@ -97,32 +102,32 @@
                         <form id="msform" action="/client/info" method="POST">
                             <!-- progressbar -->
                             <ul id="progressbar">
-                                <li class="active">Personal Details</li>
-                                <li>Fit Parameters</li>
-                                <li>Nutrition Goal</li>
+                                <li class="active" th:text="#{cl.person.details}"></li>
+                                <li th:text="#{cl.param}"></li>
+                                <li th:text="#{cl.nutr.goal}"></li>
                             </ul>
                             <!-- fieldsets -->
                             <fieldset>
-                                <h1 class="rg-h1-cl">Personal Details</h1>
-                                <h1 class="fs-subtitle">Tell us something more about you</h1>
+                                <h1 class="rg-h1-cl" th:text="#{cl.person.details}">Personal Details</h1>
+                                <h1 class="fs-subtitle" th:text="#{cl.label.tell}">Tell us something more about you</h1>
 
                                 <div class="rg-field-wrap">
-                                    <label class="rg-label">
-                                        Set A Name<span class="req rg-span">*</span>
+                                    <label class="rg-label" th:text="#{cl.label.name}">
+                                        <span class="req rg-span">*</span>
                                     </label>
                                     <input class="rg-input" type="text" name="name" required autocomplete="off"/>
                                     <p class="invalid-p"></p>
                                 </div>
                                 <div class="rg-field-wrap">
-                                    <label class="rg-label">
-                                        Set You Age<span class="req rg-span">*</span>
+                                    <label class="rg-label" th:text="#{cl.label.age}">
+                                        <span class="req rg-span">*</span>
                                     </label>
                                     <input class="rg-input" type="text" name="age" required autocomplete="off"/>
                                     <p class="invalid-p"></p>
                                 </div>
                                 <div class="rg-field-wrap">
-                                    <label class="rg-label">
-                                        Choose A Gender<span class="req rg-span">*</span>
+                                    <label class="rg-label" th:text="#{cl.label.gender}">
+                                        <span class="req rg-span">*</span>
                                     </label>
                                     <select class="rg-select" name="gender">
                                         <option style="display:none">
@@ -130,29 +135,29 @@
                                     <p class="invalid-p"></p>
                                 </div>
 
-                                <button type="button" name="next" class="next rg-button rg-button-block">
-                                    Next</button>
+                                <button type="button" name="next" class="next rg-button rg-button-block" th:text="#{cl.button.next}">
+                                    </button>
                             </fieldset>
                             <fieldset>
-                                <h1 class="rg-h1-cl">Fit Parameters</h1>
-                                <h1 class="fs-subtitle">Tell us something more about you</h1>
+                                <h1 class="rg-h1-cl" th:text="#{cl.param}"></h1>
+                                <h1 class="fs-subtitle" th:text="#{cl.label.tell}"></h1>
                                 <div class="rg-field-wrap">
-                                    <label class="rg-label">
-                                        Set A Height<span class="req rg-span">*</span>
+                                    <label class="rg-label" th:text="#{cl.label.height}">
+                                        <span class="req rg-span">*</span>
                                     </label>
                                     <input class="rg-input" type="number" name="height" required autocomplete="off"/>
                                     <p class="invalid-p"></p>
                                 </div>
                                 <div class="rg-field-wrap">
-                                    <label class="rg-label">
-                                        Set A Weight<span class="req rg-span">*</span>
+                                    <label class="rg-label" th:text="#{cl.label.weight}">
+                                        <span class="req rg-span">*</span>
                                     </label>
                                     <input class="rg-input" type="number" name="weight" required autocomplete="off"/>
                                     <p class="invalid-p"></p>
                                 </div>
                                 <div class="rg-field-wrap">
-                                    <label class="rg-label">
-                                        Choose Your Activity<span class="req rg-span">*</span>
+                                    <label class="rg-label" th:text="#{cl.label.activity}">
+                                        <span class="req rg-span">*</span>
                                     </label>
                                     <select class="rg-select" name="activity">
                                         <option style="display:none">
@@ -162,27 +167,27 @@
                                 </div>
                                 <!--<input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next"/>-->
-                                <button type="button" name="previous" class="previous rg-button rg-button-block-other">
-                                    Previous</button>
-                                <button type="button" name="next" class="next rg-button rg-button-block-other">
-                                    Next</button>
+                                <button type="button" name="previous" class="previous rg-button rg-button-block-other" th:text="#{cl.button.previous}">
+                                    </button>
+                                <button type="button" name="next" class="next rg-button rg-button-block-other" th:text="#{cl.button.next}">
+                                    </button>
                             </fieldset>
                             <fieldset>
-                                <h1 class="rg-h1-cl">Nutrition Goal</h1>
-                                <h1 class="fs-subtitle">Tell us something more about you</h1>
+                                <h1 class="rg-h1-cl" th:text="#{cl.nutr.goal}"></h1>
+                                <h1 class="fs-subtitle" th:text="#{cl.label.tell}"></h1>
                                 <div class="rg-field-wrap">
-                                    <label class="rg-label">
-                                        Choose A Nutrition Goal<span class="req rg-span">*</span>
+                                    <label class="rg-label" th:text="#{cl.label.nutr.goal}">
+                                        <span class="req rg-span">*</span>
                                     </label>
                                     <select class="rg-select" name="nutr_goal">
                                         <option style="display:none">
                                     </select>
                                     <p class="invalid-p"></p>
                                 </div>
-                                <button type="button" name="previous" class="previous rg-button rg-button-block-other">
-                                    Previous</button>
-                                <button type="submit" name="submit" class="submit rg-button rg-button-block-other">
-                                    Submit</button>
+                                <button type="button" name="previous" class="previous rg-button rg-button-block-other" th:text="#{cl.button.previous}">
+                                    </button>
+                                <button type="submit" name="submit" class="submit rg-button rg-button-block-other" th:text="#{cl.button.submit}">
+                                    </button>
                             </fieldset>
                         </form>
                     </div>
@@ -200,34 +205,31 @@
             <div class="row">
                 <div class="col-xl-5 col-md-6 col-lg-5">
                     <div class="footer_widget text-center">
-                        <h3 class="footer_title">
-                            Our Mission
+                        <h3 class="footer_title" th:text="#{footer.mission}">
                         </h3>
-                        <p>At Eat&Fit, we focus on making sure you can log your meals as quickly and easily as possible. Because the easier we make it for you, the more likely you are to stay on track, and the more likely you are to succeed in your weight loss goals.</p>
+                        <p th:text="#{about.body}"></p>
                     </div>
                 </div>
 
                 <div class="col-xl-3 col-md-6 col-lg-3">
                     <div class="footer_widget text-center">
-                        <h3 class="footer_title">
-                            Navigation
+                        <h3 class="footer_title" th:text="#{footer.head}">
                         </h3>
                         <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/info/about">About</a></li>
-                            <li><a href="/info/recipes">Recipes</a></li>
-                            <li><a href="/user/meals">Personal Info</a></li>
-                            <li><a href="/user/contact">Contact</a></li>
+                            <li><a href="/" th:text="#{footer.home}"></a></li>
+                            <li><a href="/info/about" th:text="#{footer.about}"></a></li>
+                            <li><a href="/info/recipes" th:text="#{footer.recipes}"></a></li>
+                            <li><a href="/user/meals" th:text="#{footer.personal.info}"></a></li>
+                            <li><a href="/user/contact" th:text="#{footer.contact}"></a></li>
                         </ul>
 
                     </div>
                 </div>
                 <div class="col-xl-4 col-md-6 col-lg-4">
                     <div class="footer_widget">
-                        <h3 class="footer_title">
-                            Subscribe
+                        <h3 class="footer_title" th:text="#{footer.subscribe}">
                         </h3>
-                        <p class="newsletter_text">You can trust us. we only send promo offers,</p>
+                        <p class="newsletter_text" th:text="#{footer.subtext}"></p>
                         <form action="#" class="newsletter_form">
                             <input type="text" placeholder="Enter your mail">
                             <button type="submit"> <i class="ti-arrow-right"></i> </button>
@@ -275,12 +277,12 @@
     </div>
 </footer>
 
-<p hidden id="error_name">Please enter a correct name</p>
-<p hidden id="error_num">Please enter a number</p>
-<p hidden id="error_age">Please enter a correct age between 10 and 99</p>
-<p hidden id="error_height">Please enter a correct height between 90 and 250 cm</p>
-<p hidden id="error_weight">Please enter a correct weight between 35 and 300 kg</p>
-<p hidden id="error_empty">Please enter a value</p>
+<p hidden id="error_name" th:text="#{enter.error.name}"></p>
+<p hidden id="error_num" th:text="#{enter.error.num}"></p>
+<p hidden id="error_age" th:text="#{enter.error.age}"></p>
+<p hidden id="error_height" th:text="#{enter.error.height}"></p>
+<p hidden id="error_weight" th:text="#{enter.error.weight}"></p>
+<p hidden id="error_empty" th:text="#{enter.empty}"></p>
 
 <!-- JS here -->
 <script src="/static/js/vendor/modernizr-3.5.0.min.js"></script>

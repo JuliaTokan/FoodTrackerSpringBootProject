@@ -53,27 +53,32 @@
                         <div class="main-menu   d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="/info/about">About</a></li>
-                                    <li><a href="/info/recipes">Recipes</a></li>
-                                    <li hidden name="sign"><a href="/sign/up">Sign</a></li>
+                                    <li><a href="/" th:text="#{nav.home}">Home</a></li>
+                                    <li><a href="/info/about" th:text="#{nav.about}">About</a></li>
+                                    <li><a href="/info/recipes" th:text="#{nav.recipes}">Recipes</a></li>
+                                    <li hidden name="sign"><a href="/sign/up" th:text="#{nav.sign}">Sign</a></li>
                                     <li hidden name="user"><a href="#">user<i class="ti-angle-down"></i></a>
                                         <ul class="submenu">
-                                            <li hidden name="admin"><a href="/admin/products">Admin Page</a></li>
-                                            <li><a href="/user/meals">Daily Eating</a></li>
-                                            <li><a href="/user/progress">Progress</a></li>
-                                            <li><a href="/client/edit">Edit</a></li>
-                                            <li><a href="/sign/out">Logout</a></li>
+                                            <li hidden name="admin"><a href="/admin/products" th:text="#{nav.admin.page}">Admin Page</a></li>
+                                            <li><a href="/user/meals" th:text="#{nav.daily.eating}">Daily Eating</a></li>
+                                            <li><a href="/user/progress" th:text="#{nav.progress}">Progress</a></li>
+                                            <li><a href="/client/edit" th:text="#{nav.edit}">Edit</a></li>
+                                            <li><a href="/sign/out" th:text="#{nav.logout}">Logout</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="/info/contact">Contact</a></li>
+                                    <li><a href="/info/contact" th:text="#{nav.contact}">Contact</a></li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                        <div class="search_icon">
-                            <a href="/locale/set?lang=ru_RU">
+                        <div class="search_icon" th:if="${#locale.toString() == 'ru_RU'}">
+                            <a th:href="@{${#httpServletRequest.requestURI}(lang='en_US')}">
+                                <i>EN</i>
+                            </a>
+                        </div>
+                        <div class="search_icon" th:if="${#locale.toString() == 'en_US'}">
+                            <a th:href="@{${#httpServletRequest.requestURI}(lang='ru_RU')}">
                                 <i>RU</i>
                             </a>
                         </div>
@@ -99,7 +104,7 @@
                             <div class="rg-form">
 
                                 <ul class="rg-tab-group">
-                                    <li class="rg-tab"><a class="rg-a"
+                                    <li class="rg-tab active"><a class="rg-a"
                                                                                                     href="#signup">Sign Up</a>
                                     </li>
                                     <li class="rg-tab"><a class="rg-a"
@@ -109,12 +114,12 @@
 
                                 <div class="rg-tab-content">
                                     <div id="signup">
-                                    <h1 class="rg-h1">Sign Up for Free</h1>
+                                    <h1 class="rg-h1" th:text="#{h1.sign.up}"></h1>
 
                                     <form class="singup" action="/sign/up" method="POST" accept-charset="UTF-8">
                                         <div class="rg-field-wrap">
-                                            <label class="rg-label">
-                                                Email Address<span class="req rg-span">*</span>
+                                            <label class="rg-label" th:text="#{span.email}">
+                                                <span class="req rg-span">*</span>
                                             </label>
                                             <input class="rg-input" type="email" name="login" required
                                                    autocomplete="off"/>
@@ -122,8 +127,8 @@
                                         </div>
 
                                         <div class="rg-field-wrap">
-                                            <label class="rg-label">
-                                                Set A Password (7-20 characters)<span class="req rg-span">*</span>
+                                            <label class="rg-label" th:text="#{span.pass}">
+                                                <span class="req rg-span">*</span>
                                             </label>
                                             <input class="rg-input" type="password" name="password" required
                                                    autocomplete="off"/>
@@ -131,37 +136,37 @@
                                         </div>
 
                                         <div class="rg-field-wrap">
-                                            <label class="rg-label">
-                                                Confirm A Password (7-20 characters)<span class="req rg-span">*</span>
+                                            <label class="rg-label" th:text="#{span.conf.pass}">
+                                                <span class="req rg-span">*</span>
                                             </label>
                                             <input class="rg-input" type="password" name="conf-password" required
                                                    autocomplete="off"/>
                                             <p class="invalid-p"></p>
                                         </div>
 
-                                        <button type="submit" class="rg-button rg-button-block signup-sbm">
-                                            Get Started</button>
+                                        <button type="submit" class="rg-button rg-button-block signup-sbm" th:text="#{button.start}">
+                                            </button>
 
                                     </form>
 
                                 </div>
 
                                 <div id="login">
-                                <h1 class="rg-h1">Welcome Back!</h1>
+                                <h1 class="rg-h1" th:text="#{h1.sign.in}"></h1>
 
                                 <form th:action="@{/sign/in}" method="post" accept-charset="UTF-8">
 
                                     <div class="rg-field-wrap">
-                                        <label class="rg-label">
-                                            Email Address<span class="req rg-span">*</span>
+                                        <label class="rg-label" th:text="#{span.email}">
+                                            <span class="req rg-span">*</span>
                                         </label>
                                         <input class="rg-input" type="email" name="login" required autocomplete="off"/>
                                         <p class="invalid-p"></p>
                                     </div>
 
                                     <div class="rg-field-wrap">
-                                        <label class="rg-label">
-                                            Password<span class="req rg-span">*</span>
+                                        <label class="rg-label" th:text="#{span.pass.simpl}">
+                                            <span class="req rg-span">*</span>
                                         </label>
                                         <input class="rg-input" type="password" name="password" required
                                                autocomplete="off"/>
@@ -170,8 +175,8 @@
 
                                     <p class="rg-forgot"><a class="rg-a" href="#">Forgot Password?</a></p>
 
-                                    <button class="rg-button rg-button-block signin-sbm">
-                                        Log In</button>
+                                    <button class="rg-button rg-button-block signin-sbm" th:text="#{button.login}">
+                                        </button>
                                 </form>
                             </div>
                         </div><!-- tab-content -->
@@ -184,45 +189,44 @@
 </div>
 </div>
 </div>
-<p hidden id="error_email">Please enter a valid email address</p>
-<p hidden id="error_pass">Please enter a value between 7 and 20 characters long</p>
-<p hidden id="error_conf_pass">The provided passwords do not match</p>
-<p hidden id="error_empty">Please enter a value</p>
+
+<p hidden id="error_email" th:text="#{enter.error.email}"></p>
+<p hidden id="error_pass" th:text="#{enter.error.pass}"></p>
+<p hidden id="error_conf_pass" th:text="#{enter.error.conf.pass}"></p>
+<p hidden id="error_empty" th:text="#{enter.empty}"></p>
 <!-- slider_area_end -->
+
 <footer class="footer">
     <div class="footer_top">
         <div class="container">
             <div class="row">
                 <div class="col-xl-5 col-md-6 col-lg-5">
                     <div class="footer_widget text-center">
-                        <h3 class="footer_title">
-                            Our Mission
+                        <h3 class="footer_title" th:text="#{footer.mission}">
                         </h3>
-                        <p>At Eat&Fit, we focus on making sure you can log your meals as quickly and easily as possible. Because the easier we make it for you, the more likely you are to stay on track, and the more likely you are to succeed in your weight loss goals.</p>
+                        <p th:text="#{about.body}"></p>
                     </div>
                 </div>
 
                 <div class="col-xl-3 col-md-6 col-lg-3">
                     <div class="footer_widget text-center">
-                        <h3 class="footer_title">
-                            Navigation
+                        <h3 class="footer_title" th:text="#{footer.head}">
                         </h3>
                         <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/info/about">About</a></li>
-                            <li><a href="/info/recipes">Recipes</a></li>
-                            <li><a href="/user/meals">Personal Info</a></li>
-                            <li><a href="/user/contact">Contact</a></li>
+                            <li><a href="/" th:text="#{footer.home}"></a></li>
+                            <li><a href="/info/about" th:text="#{footer.about}"></a></li>
+                            <li><a href="/info/recipes" th:text="#{footer.recipes}"></a></li>
+                            <li><a href="/user/meals" th:text="#{footer.personal.info}"></a></li>
+                            <li><a href="/user/contact" th:text="#{footer.contact}"></a></li>
                         </ul>
 
                     </div>
                 </div>
                 <div class="col-xl-4 col-md-6 col-lg-4">
                     <div class="footer_widget">
-                        <h3 class="footer_title">
-                            Subscribe
+                        <h3 class="footer_title" th:text="#{footer.subscribe}">
                         </h3>
-                        <p class="newsletter_text">You can trust us. we only send promo offers,</p>
+                        <p class="newsletter_text" th:text="#{footer.subtext}"></p>
                         <form action="#" class="newsletter_form">
                             <input type="text" placeholder="Enter your mail">
                             <button type="submit"> <i class="ti-arrow-right"></i> </button>
