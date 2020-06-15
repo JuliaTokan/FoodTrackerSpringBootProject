@@ -129,9 +129,9 @@
             </table>
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
-                    <c:forEach var = "i" begin = "1" end = "${pages}">
-                        <li class="page-item"><a class="page-link text-warning" href="/admin/products?page=${i}">${i}</a></li>
-                    </c:forEach>
+                    <th:block th:each="i: ${#numbers.sequence(1, pages)}">
+                        <li class="page-item"><a class="page-link text-warning" th:href="@{/admin/products(page=${i})}"  th:text="${i}"></a></li>
+                    </th:block>
                 </ul>
             </nav>
         </div>
@@ -421,11 +421,9 @@
             })
         });
         var url = window.location.href;
-        alert(url);
         var params = url.split('?')[1] == undefined?"":url.split('?')[1];
         if(params.length!=0)
             params = "?"+params;
-        alert(params);
         $.get("/get_admin_products"+params, function (data) {
             var html_result = '';
             $.each( data, function( key, val ) {
