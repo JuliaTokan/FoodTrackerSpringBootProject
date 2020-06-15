@@ -64,7 +64,7 @@ public class SignController {
         if (!userService.createUser(user)) {
             model.addAttribute("error_user", true);
             model.addAttribute(PARAM_LOGIN, user.getLogin());
-            return REGISTRATION_PAGE;
+            return "redirect:/sign/up?error_create";
         }
         authWithAuthManager(request, user.getLogin(), password);
         session.setAttribute(PARAM_USER, user);

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Eat&Fit</title>
-    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <link rel="shortcut icon" href="/static/img/favicon.ico"/>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -59,8 +59,10 @@
                                     <li hidden name="sign"><a href="/sign/up" th:text="#{nav.sign}">Sign</a></li>
                                     <li hidden name="user"><a href="#">user<i class="ti-angle-down"></i></a>
                                         <ul class="submenu">
-                                            <li hidden name="admin"><a href="/admin/products" th:text="#{nav.admin.page}">Admin Page</a></li>
-                                            <li><a href="/user/meals" th:text="#{nav.daily.eating}">Daily Eating</a></li>
+                                            <li hidden name="admin"><a href="/admin/products"
+                                                                       th:text="#{nav.admin.page}">Admin Page</a></li>
+                                            <li><a href="/user/meals" th:text="#{nav.daily.eating}">Daily Eating</a>
+                                            </li>
                                             <li><a href="/user/progress" th:text="#{nav.progress}">Progress</a></li>
                                             <li><a href="/client/edit" th:text="#{nav.edit}">Edit</a></li>
                                             <li><a href="/sign/out" th:text="#{nav.logout}">Logout</a></li>
@@ -103,91 +105,113 @@
 
                             <div class="rg-form">
 
-                                <ul class="rg-tab-group">
+                                <ul class="rg-tab-group" th:if="${#httpServletRequest.getParameter('error') == null}">
                                     <li class="rg-tab active"><a class="rg-a"
-                                                                                                    href="#signup">Sign Up</a>
+                                                                 href="#signup">Sign Up</a>
                                     </li>
                                     <li class="rg-tab"><a class="rg-a"
-                                                                                                   href="#login">Sign In</a>
+                                                          href="#login">Sign In</a>
+                                    </li>
+                                </ul>
+
+                                <ul class="rg-tab-group" th:if="${#httpServletRequest.getParameter('error') != null}">
+                                    <li class="rg-tab"><a class="rg-a"
+                                                                 href="#signup">Sign Up</a>
+                                    </li>
+                                    <li class="rg-tab active"><a class="rg-a"
+                                                          href="#login">Sign In</a>
                                     </li>
                                 </ul>
 
                                 <div class="rg-tab-content">
-                                    <div id="signup">
-                                    <h1 class="rg-h1" th:text="#{h1.sign.up}"></h1>
+                                    <div id="signup" th:style="${#httpServletRequest.getParameter('error') == null ? 'display:block' : 'display:none'}">
+                                        <h1 class="rg-h1" th:text="#{h1.sign.up}"></h1>
 
-                                    <form class="singup" action="/sign/up" method="POST" accept-charset="UTF-8">
-                                        <div class="rg-field-wrap">
-                                            <label class="rg-label" th:text="#{span.email}">
-                                                <span class="req rg-span">*</span>
-                                            </label>
-                                            <input class="rg-input" type="email" name="login" required
-                                                   autocomplete="off"/>
-                                            <p class="invalid-p"></p>
+                                        <div class="alert alert-danger" th:if="${#httpServletRequest.getParameter('error_create') != null}">
+                                            <a href="#" class="close">x</a>
+                                            <strong th:text="#{invalid.oh}"></strong> <span th:text="#{invalid.error.user.exist}"></span>
                                         </div>
 
-                                        <div class="rg-field-wrap">
-                                            <label class="rg-label" th:text="#{span.pass}">
-                                                <span class="req rg-span">*</span>
-                                            </label>
-                                            <input class="rg-input" type="password" name="password" required
-                                                   autocomplete="off"/>
-                                            <p class="invalid-p"></p>
-                                        </div>
+                                        <form class="singup" action="/sign/up" method="POST" accept-charset="UTF-8" >
+                                            <div class="rg-field-wrap">
+                                                <label class="rg-label" th:text="#{span.email}">
+                                                    <span class="req rg-span">*</span>
+                                                </label>
+                                                <input class="rg-input" type="email" name="login" required
+                                                       autocomplete="off"/>
+                                                <p class="invalid-p"></p>
+                                            </div>
 
-                                        <div class="rg-field-wrap">
-                                            <label class="rg-label" th:text="#{span.conf.pass}">
-                                                <span class="req rg-span">*</span>
-                                            </label>
-                                            <input class="rg-input" type="password" name="conf-password" required
-                                                   autocomplete="off"/>
-                                            <p class="invalid-p"></p>
-                                        </div>
+                                            <div class="rg-field-wrap">
+                                                <label class="rg-label" th:text="#{span.pass}">
+                                                    <span class="req rg-span">*</span>
+                                                </label>
+                                                <input class="rg-input" type="password" name="password" required
+                                                       autocomplete="off"/>
+                                                <p class="invalid-p"></p>
+                                            </div>
 
-                                        <button type="submit" class="rg-button rg-button-block signup-sbm" th:text="#{button.start}">
+                                            <div class="rg-field-wrap">
+                                                <label class="rg-label" th:text="#{span.conf.pass}">
+                                                    <span class="req rg-span">*</span>
+                                                </label>
+                                                <input class="rg-input" type="password" name="conf-password" required
+                                                       autocomplete="off"/>
+                                                <p class="invalid-p"></p>
+                                            </div>
+
+                                            <button type="submit" class="rg-button rg-button-block signup-sbm"
+                                                    th:text="#{button.start}">
                                             </button>
 
-                                    </form>
+                                        </form>
 
-                                </div>
-
-                                <div id="login">
-                                <h1 class="rg-h1" th:text="#{h1.sign.in}"></h1>
-
-                                <form th:action="@{/sign/in}" method="post" accept-charset="UTF-8">
-
-                                    <div class="rg-field-wrap">
-                                        <label class="rg-label" th:text="#{span.email}">
-                                            <span class="req rg-span">*</span>
-                                        </label>
-                                        <input class="rg-input" type="email" name="login" required autocomplete="off"/>
-                                        <p class="invalid-p"></p>
                                     </div>
 
-                                    <div class="rg-field-wrap">
-                                        <label class="rg-label" th:text="#{span.pass.simpl}">
-                                            <span class="req rg-span">*</span>
-                                        </label>
-                                        <input class="rg-input" type="password" name="password" required
-                                               autocomplete="off"/>
-                                        <p class="invalid-p"></p>
+                                    <div id="login" th:style="${#httpServletRequest.getParameter('error') != null ? 'display:block' : 'display:none'}">
+                                        <h1 class="rg-h1" th:text="#{h1.sign.in}"></h1>
+
+                                        <div class="alert alert-danger" th:if="${#httpServletRequest.getParameter('error') != null}">
+                                            <a href="#" class="close">x</a>
+                                            <strong th:text="#{invalid.oh}"></strong> <span th:text="#{invalid.error.user}"></span>
+                                        </div>
+
+                                        <form th:action="@{/sign/in}" method="post" accept-charset="UTF-8">
+
+                                            <div class="rg-field-wrap">
+                                                <label class="rg-label" th:text="#{span.email}">
+                                                    <span class="req rg-span">*</span>
+                                                </label>
+                                                <input class="rg-input" type="email" name="login" required
+                                                       autocomplete="off"/>
+                                                <p class="invalid-p"></p>
+                                            </div>
+
+                                            <div class="rg-field-wrap">
+                                                <label class="rg-label" th:text="#{span.pass.simpl}">
+                                                    <span class="req rg-span">*</span>
+                                                </label>
+                                                <input class="rg-input" type="password" name="password" required
+                                                       autocomplete="off"/>
+                                                <p class="invalid-p"></p>
+                                            </div>
+
+                                            <p class="rg-forgot"><a class="rg-a" href="#">Forgot Password?</a></p>
+
+                                            <button class="rg-button rg-button-block signin-sbm"
+                                                    th:text="#{button.login}">
+                                            </button>
+                                        </form>
                                     </div>
-
-                                    <p class="rg-forgot"><a class="rg-a" href="#">Forgot Password?</a></p>
-
-                                    <button class="rg-button rg-button-block signin-sbm" th:text="#{button.login}">
-                                        </button>
-                                </form>
+                                </div><!-- tab-content -->
                             </div>
-                        </div><!-- tab-content -->
-                    </div>
 
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 </div>
 
 <p hidden id="error_email" th:text="#{enter.error.email}"></p>
@@ -229,7 +253,7 @@
                         <p class="newsletter_text" th:text="#{footer.subtext}"></p>
                         <form action="#" class="newsletter_form">
                             <input type="text" placeholder="Enter your mail">
-                            <button type="submit"> <i class="ti-arrow-right"></i> </button>
+                            <button type="submit"><i class="ti-arrow-right"></i></button>
                         </form>
 
                     </div>
