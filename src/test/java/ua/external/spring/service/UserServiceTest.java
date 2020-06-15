@@ -7,17 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import ua.external.spring.dto.UserDTO;
-import ua.external.spring.entity.Meals;
-import ua.external.spring.entity.User;
 import ua.external.spring.repository.UserRepository;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)

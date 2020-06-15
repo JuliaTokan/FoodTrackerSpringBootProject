@@ -1,0 +1,308 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Eat&Fit</title>
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/css/magnific-popup.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/themify-icons.css">
+    <link rel="stylesheet" href="/static/css/nice-select.css">
+    <link rel="stylesheet" href="/static/css/flaticon.css">
+    <link rel="stylesheet" href="/static/css/gijgo.css">
+    <link rel="stylesheet" href="/static/css/animate.min.css">
+    <link rel="stylesheet" href="/static/css/slick.css">
+    <link rel="stylesheet" href="/static/css/slicknav.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/first_registration.css">
+    <link rel="stylesheet" href="/static/css/message.css">
+    <script src="/static/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/static/js/loadClient.js"></script>
+</head>
+
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<header>
+    <div class="header-area ">
+        <div id="sticky-header" class="main-header-area progress-sticky">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-lg-2">
+                        <div class="logo">
+                            <a href="/">
+                                <img class="main-header-logo" src="/static/img/logo_new.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-7">
+                        <div class="main-menu   d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="/info/about">About</a></li>
+                                    <li><a href="/info/recipes">Recipes</a></li>
+                                    <li hidden name="sign"><a href="/sign/up">Sign</a></li>
+                                    <li hidden name="user"><a href="#">user<i class="ti-angle-down"></i></a>
+                                        <ul class="submenu">
+                                            <li hidden name="admin"><a href="/admin/products">Admin Page</a></li>
+                                            <li><a href="/user/meals">Daily Eating</a></li>
+                                            <li><a href="/user/progress">Progress</a></li>
+                                            <li><a href="/client/edit">Edit</a></li>
+                                            <li><a href="/sign/out">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/info/contact">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                        <div class="search_icon">
+                            <a href="/locale/set?lang=ru_RU">
+                                <i>RU</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- slider_area_start -->
+<div class="slider_area">
+    <div class="single_slider  d-flex align-items-center slider_bg_3">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-xl-8 ">
+                    <div class="slider_text text-center">
+                        <div class="text">
+
+                            <div class="rg-form">
+
+                                <ul class="rg-tab-group">
+                                    <li class="rg-tab"><a class="rg-a"
+                                                                                                    href="#signup">Sign Up</a>
+                                    </li>
+                                    <li class="rg-tab"><a class="rg-a"
+                                                                                                   href="#login">Sign In</a>
+                                    </li>
+                                </ul>
+
+                                <div class="rg-tab-content">
+                                    <div id="signup">
+                                    <h1 class="rg-h1">Sign Up for Free</h1>
+
+                                    <form class="singup" action="/sign/up" method="POST" accept-charset="UTF-8">
+                                        <div class="rg-field-wrap">
+                                            <label class="rg-label">
+                                                Email Address<span class="req rg-span">*</span>
+                                            </label>
+                                            <input class="rg-input" type="email" name="login" required
+                                                   autocomplete="off"/>
+                                            <p class="invalid-p"></p>
+                                        </div>
+
+                                        <div class="rg-field-wrap">
+                                            <label class="rg-label">
+                                                Set A Password (7-20 characters)<span class="req rg-span">*</span>
+                                            </label>
+                                            <input class="rg-input" type="password" name="password" required
+                                                   autocomplete="off"/>
+                                            <p class="invalid-p"></p>
+                                        </div>
+
+                                        <div class="rg-field-wrap">
+                                            <label class="rg-label">
+                                                Confirm A Password (7-20 characters)<span class="req rg-span">*</span>
+                                            </label>
+                                            <input class="rg-input" type="password" name="conf-password" required
+                                                   autocomplete="off"/>
+                                            <p class="invalid-p"></p>
+                                        </div>
+
+                                        <button type="submit" class="rg-button rg-button-block signup-sbm">
+                                            Get Started</button>
+
+                                    </form>
+
+                                </div>
+
+                                <div id="login">
+                                <h1 class="rg-h1">Welcome Back!</h1>
+
+                                <form th:action="@{/sign/in}" method="post" accept-charset="UTF-8">
+
+                                    <div class="rg-field-wrap">
+                                        <label class="rg-label">
+                                            Email Address<span class="req rg-span">*</span>
+                                        </label>
+                                        <input class="rg-input" type="email" name="login" required autocomplete="off"/>
+                                        <p class="invalid-p"></p>
+                                    </div>
+
+                                    <div class="rg-field-wrap">
+                                        <label class="rg-label">
+                                            Password<span class="req rg-span">*</span>
+                                        </label>
+                                        <input class="rg-input" type="password" name="password" required
+                                               autocomplete="off"/>
+                                        <p class="invalid-p"></p>
+                                    </div>
+
+                                    <p class="rg-forgot"><a class="rg-a" href="#">Forgot Password?</a></p>
+
+                                    <button class="rg-button rg-button-block signin-sbm">
+                                        Log In</button>
+                                </form>
+                            </div>
+                        </div><!-- tab-content -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<p hidden id="error_email">Please enter a valid email address</p>
+<p hidden id="error_pass">Please enter a value between 7 and 20 characters long</p>
+<p hidden id="error_conf_pass">The provided passwords do not match</p>
+<p hidden id="error_empty">Please enter a value</p>
+<!-- slider_area_end -->
+<footer class="footer">
+    <div class="footer_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-md-6 col-lg-5">
+                    <div class="footer_widget text-center">
+                        <h3 class="footer_title">
+                            Our Mission
+                        </h3>
+                        <p>At Eat&Fit, we focus on making sure you can log your meals as quickly and easily as possible. Because the easier we make it for you, the more likely you are to stay on track, and the more likely you are to succeed in your weight loss goals.</p>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 col-lg-3">
+                    <div class="footer_widget text-center">
+                        <h3 class="footer_title">
+                            Navigation
+                        </h3>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/info/about">About</a></li>
+                            <li><a href="/info/recipes">Recipes</a></li>
+                            <li><a href="/user/meals">Personal Info</a></li>
+                            <li><a href="/user/contact">Contact</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6 col-lg-4">
+                    <div class="footer_widget">
+                        <h3 class="footer_title">
+                            Subscribe
+                        </h3>
+                        <p class="newsletter_text">You can trust us. we only send promo offers,</p>
+                        <form action="#" class="newsletter_form">
+                            <input type="text" placeholder="Enter your mail">
+                            <button type="submit"> <i class="ti-arrow-right"></i> </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copy-right_text">
+        <div class="container">
+            <div class="footer_border"></div>
+            <div class="row align-items-center">
+                <div class="col-xl-8 col-md-8">
+                </div>
+                <div class="col-xl-4 col-md-4">
+                    <div class="socail_links">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="ti-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="ti-twitter-alt"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-dribbble"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-behance"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- JS here -->
+<script src="/static/js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="/static/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="/static/js/popper.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/owl.carousel.min.js"></script>
+<script src="/static/js/isotope.pkgd.min.js"></script>
+<script src="/static/js/ajax-form.js"></script>
+<script src="/static/js/waypoints.min.js"></script>
+<script src="/static/js/jquery.counterup.min.js"></script>
+<script src="/static/js/imagesloaded.pkgd.min.js"></script>
+<script src="/static/js/scrollIt.js"></script>
+<script src="/static/js/jquery.scrollUp.min.js"></script>
+<script src="/static/js/wow.min.js"></script>
+<script src="/static/js/nice-select.min.js"></script>
+<script src="/static/js/jquery.slicknav.min.js"></script>
+<script src="/static/js/jquery.magnific-popup.min.js"></script>
+<script src="/static/js/plugins.js"></script>
+<script src="/static/js/gijgo.min.js"></script>
+
+<!--contact js-->
+<script src="/static/js/contact.js"></script>
+<script src="/static/js/jquery.ajaxchimp.min.js"></script>
+<script src="/static/js/jquery.form.js"></script>
+<script src="/static/js/jquery.validate.min.js"></script>
+<script src="/static/js/mail-script.js"></script>
+
+<script src="/static/js/main.js"></script>
+
+<script src="/static/js/first_registration.js"></script>
+<script src="/static/js/validator.js"></script>
+<script src="/static/js/message.js"></script>
+
+</body>
+
+</html>

@@ -22,7 +22,7 @@ public class FoodTrackerSpringApplication {
         SpringApplication.run(FoodTrackerSpringApplication.class, args);
     }
 
-    @Bean
+    /*@Bean
     public UrlBasedViewResolver setupViewResolver() {
         UrlBasedViewResolver resolver = new UrlBasedViewResolver();
         resolver.setPrefix("/pages/");
@@ -30,7 +30,7 @@ public class FoodTrackerSpringApplication {
         resolver.setViewClass(JstlView.class);
 
         return resolver;
-    }
+    }*/
 
 
 
