@@ -31,7 +31,6 @@ public class XSSFilter implements Filter {
             ServletRequest request,
             ServletResponse response,
             FilterChain chain) throws IOException, ServletException {
-        System.out.println("Filter");
         chain.doFilter(new XSSRequestWrapper((HttpServletRequest) request), response);
     }
 

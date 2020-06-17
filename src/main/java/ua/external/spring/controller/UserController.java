@@ -12,13 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.external.spring.dto.MealsDTO;
 import ua.external.spring.dto.ProductDTO;
+import ua.external.spring.entity.Client;
 import ua.external.spring.entity.EatPeriod;
 import ua.external.spring.entity.Product;
 import ua.external.spring.entity.User;
-import ua.external.spring.service.impl.EatPeriodService;
-import ua.external.spring.service.impl.MealsService;
-import ua.external.spring.service.impl.ProductService;
-import ua.external.spring.service.impl.UserService;
+import ua.external.spring.service.impl.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -46,6 +44,9 @@ public class UserController {
 
     @Autowired
     private EatPeriodService eatPeriodService;
+
+    @Autowired
+    private EmailService emailService;
 
     final static Logger logger = LogManager.getLogger();
     final static int WEEK = 7;
@@ -123,6 +124,7 @@ public class UserController {
             meals.setUser(user);
             buildMeals(request, meals);
             mealsService.createMeals(meals);
+            checkCaloriesLimit(user);
             logger.info("add meals with id = " + meals.getId());
         }
         return MEALS_PAGE;
@@ -138,5 +140,15 @@ public class UserController {
         mealsDTO.setEatPeriod(eatPeriod);
         mealsDTO.setProduct(product);
         mealsDTO.setDate(new Timestamp(System.currentTimeMillis()));
+    }
+
+    private void checkCaloriesLimit(User user) {
+        Integer calories = userService.countCalories(user);
+        if (user.getClient() != null) {
+            Client client = user.getClient();
+            if (client.getCalories() < calories) {
+                emailService.sendWarningLetter(user.getLogin());
+            }
+        }
     }
 }
