@@ -2,22 +2,17 @@ package ua.external.spring.controller.rest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import ua.external.spring.dto.MealsDTO;
-import ua.external.spring.dto.ProductDTO;
 import ua.external.spring.entity.EatPeriod;
-import ua.external.spring.entity.Meals;
 import ua.external.spring.entity.User;
-import ua.external.spring.service.EatPeriodService;
-import ua.external.spring.service.MealsService;
-import ua.external.spring.service.UserService;
+import ua.external.spring.service.impl.EatPeriodService;
+import ua.external.spring.service.impl.MealsService;
+import ua.external.spring.service.impl.UserService;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;

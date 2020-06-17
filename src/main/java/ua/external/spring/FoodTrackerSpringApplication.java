@@ -3,6 +3,7 @@ package ua.external.spring;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import ua.external.spring.entity.*;
+import ua.external.spring.filter.XSSFilter;
 import ua.external.spring.repository.UserRepository;
 import ua.external.spring.service.*;
 
@@ -22,6 +24,16 @@ public class FoodTrackerSpringApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(FoodTrackerSpringApplication.class, args);
+    }
+
+    @Bean
+    public FilterRegistrationBean xssPreventFilter() {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+
+        registrationBean.setFilter(new XSSFilter());
+        registrationBean.addUrlPatterns("/*");
+
+        return registrationBean;
     }
 
     /*@Bean

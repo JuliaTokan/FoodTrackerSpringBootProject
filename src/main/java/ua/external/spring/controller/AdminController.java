@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ua.external.spring.dto.ProductDTO;
 import ua.external.spring.entity.User;
-import ua.external.spring.service.ProductService;
-import ua.external.spring.service.UserService;
+import ua.external.spring.service.impl.ProductService;
+import ua.external.spring.service.impl.UserService;
 import static ua.external.spring.util.сonst.Pages.*;
 
 import static ua.external.spring.util.сonst.Constant.*;

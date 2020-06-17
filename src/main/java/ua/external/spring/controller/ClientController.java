@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.external.spring.dto.ClientDTO;
 import ua.external.spring.entity.*;
-import ua.external.spring.service.*;
+import ua.external.spring.service.impl.*;
 
 import static ua.external.spring.util.сonst.Constant.*;
 import static ua.external.spring.util.сonst.Pages.*;

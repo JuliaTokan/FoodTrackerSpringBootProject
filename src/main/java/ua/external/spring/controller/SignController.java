@@ -20,9 +20,9 @@ import static ua.external.spring.util.сonst.Constant.PARAM_LOGIN;
 import static ua.external.spring.util.сonst.Constant.PARAM_USER;
 import static ua.external.spring.util.сonst.Pages.*;
 
-import ua.external.spring.service.EmailService;
-import ua.external.spring.service.UserRoleService;
-import ua.external.spring.service.UserService;
+import ua.external.spring.service.impl.EmailService;
+import ua.external.spring.service.impl.UserRoleService;
+import ua.external.spring.service.impl.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

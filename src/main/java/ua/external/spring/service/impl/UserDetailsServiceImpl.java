@@ -1,4 +1,4 @@
-package ua.external.spring.service;
+package ua.external.spring.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

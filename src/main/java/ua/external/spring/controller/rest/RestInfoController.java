@@ -7,10 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ua.external.spring.dto.ClientDTO;
-import ua.external.spring.dto.UserDTO;
 import ua.external.spring.entity.*;
-import ua.external.spring.repository.NutritionGoalRepository;
-import ua.external.spring.service.*;
+import ua.external.spring.service.impl.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;

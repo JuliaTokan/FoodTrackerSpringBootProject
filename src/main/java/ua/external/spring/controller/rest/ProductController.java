@@ -1,17 +1,14 @@
 package ua.external.spring.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ua.external.spring.dto.ProductDTO;
 import ua.external.spring.entity.User;
-import ua.external.spring.service.ProductService;
-import ua.external.spring.service.UserService;
+import ua.external.spring.service.impl.ProductService;
+import ua.external.spring.service.impl.UserService;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;

@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import ua.external.spring.dto.MealsDTO;
 import ua.external.spring.dto.ProductDTO;
 import ua.external.spring.entity.EatPeriod;
-import ua.external.spring.entity.Meals;
 import ua.external.spring.entity.Product;
 import ua.external.spring.entity.User;
-import ua.external.spring.service.EatPeriodService;
-import ua.external.spring.service.MealsService;
-import ua.external.spring.service.ProductService;
-import ua.external.spring.service.UserService;
+import ua.external.spring.service.impl.EatPeriodService;
+import ua.external.spring.service.impl.MealsService;
+import ua.external.spring.service.impl.ProductService;
+import ua.external.spring.service.impl.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

@@ -1,19 +1,21 @@
-package ua.external.spring.service;
+package ua.external.spring.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import ua.external.spring.service.IEmailService;
 import ua.external.spring.util.EmailContent;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @Service
-public class EmailService {
+public class EmailService implements IEmailService {
     @Autowired
     private JavaMailSender sender;
 
+    @Override
     public void send(String sendTo, String subject, String messageToSend){
         try {
             MimeMessage message = sender.createMimeMessage();
@@ -29,10 +31,12 @@ public class EmailService {
         }
     }
 
+    @Override
     public void sendWelcomeLetter(String sendTo) {
         send(sendTo, "Welcome to Eat&Fit", EmailContent.WELCOME_LETTER);
     }
 
+    @Override
     public void sendWarningLetter(String sendTo) {
         send(sendTo, "Your limit reached", EmailContent.WARNING_LETTER);
     }

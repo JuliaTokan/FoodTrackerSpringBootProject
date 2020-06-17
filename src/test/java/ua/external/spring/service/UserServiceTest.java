@@ -8,6 +8,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import ua.external.spring.dto.UserDTO;
 import ua.external.spring.repository.UserRepository;
+import ua.external.spring.service.impl.UserService;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
