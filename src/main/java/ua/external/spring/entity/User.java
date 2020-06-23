@@ -44,7 +44,7 @@ public class User implements Serializable, Cloneable {
         this.client = null;
     }
 
-    public static User of(Long id, String login, String password, UserRole role){
+    public static User of(Long id, String login, String password, UserRole role) {
         return User.builder()
                 .id(id)
                 .login(login)
@@ -53,11 +53,11 @@ public class User implements Serializable, Cloneable {
                 .build();
     }
 
-    public static User fromDTO(UserDTO userDTO){
+    public static User fromDTO(UserDTO userDTO) {
         return User.of(userDTO.getId(), userDTO.getLogin(), userDTO.getPassword(), userDTO.getRole());
     }
 
-    public UserDTO toDTO (){
+    public UserDTO toDTO() {
         return UserDTO.of(id, login, null, role);
     }
 }

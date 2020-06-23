@@ -45,7 +45,7 @@ public class RestMealsController {
         return new LinkedHashMap<>();
     }
 
-    private Map<String, List<String>> getStructuresInfo(List<MealsDTO> meals){
+    private Map<String, List<String>> getStructuresInfo(List<MealsDTO> meals) {
         List<EatPeriod> eatPeriods = eatPeriodService.findAllEatPeriods();
         Map<String, List<String>> structMeals = new LinkedHashMap<>();
 
@@ -54,7 +54,7 @@ public class RestMealsController {
         for (EatPeriod eatPeriod : eatPeriods) {
             List<MealsDTO> mealsByTime = meals.stream().filter(x -> x.getEatPeriod().getId() == eatPeriod.getId()).collect(Collectors.toList());
             List<String> result = new ArrayList<>();
-            for(MealsDTO m: mealsByTime){
+            for (MealsDTO m : mealsByTime) {
                 try {
                     result.add(Obj.writeValueAsString(m));
                 } catch (JsonProcessingException e) {

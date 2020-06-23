@@ -15,17 +15,17 @@ public class NutritionGoalService implements INutritionGoalService {
     NutritionGoalRepository nutritionGoalRepository;
 
     @Override
-    public Optional<NutritionGoal> findNutritionGoalById(Long id){
+    public Optional<NutritionGoal> findNutritionGoalById(Long id) {
         return nutritionGoalRepository.findById(id);
     }
 
     @Override
-    public List<NutritionGoal> findAllNutritionGoals(){
+    public List<NutritionGoal> findAllNutritionGoals() {
         return nutritionGoalRepository.findAll();
     }
 
     @Override
-    public boolean create(NutritionGoal nutritionGoal){
+    public boolean create(NutritionGoal nutritionGoal) {
         nutritionGoalRepository.save(nutritionGoal);
         return true;
     }

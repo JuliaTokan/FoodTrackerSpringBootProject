@@ -17,13 +17,13 @@ public class MealsService implements IMealsService {
     MealsRepository mealsRepository;
 
     @Override
-    public boolean createMeals(MealsDTO meals){
+    public boolean createMeals(MealsDTO meals) {
         mealsRepository.save(Meals.fromDTO(meals));
         return true;
     }
 
     @Override
-    public List<MealsDTO> getAllMealForUser(Long userId){
+    public List<MealsDTO> getAllMealForUser(Long userId) {
         final List<MealsDTO> result = new ArrayList<>();
         List<Meals> meals = mealsRepository.findAllByUser(userId);
 
@@ -32,13 +32,13 @@ public class MealsService implements IMealsService {
     }
 
     @Override
-    public boolean deleteMealsById(Long id){
+    public boolean deleteMealsById(Long id) {
         mealsRepository.deleteById(id);
         return true;
     }
 
     @Override
-    public List<MealsDTO> getAllMealForUserByDate(Long userId, LocalDate date){
+    public List<MealsDTO> getAllMealForUserByDate(Long userId, LocalDate date) {
         final List<MealsDTO> result = new ArrayList<>();
         List<Meals> meals = mealsRepository.findAllByUserAndDay(userId, date.toString());
         meals.forEach((x) -> result.add(x.toDTO()));

@@ -15,22 +15,22 @@ public class UserRoleService implements IUserRoleService {
     UserRoleRepository userRoleRepository;
 
     @Override
-    public Optional<UserRole> findUserRoleById(Long id){
+    public Optional<UserRole> findUserRoleById(Long id) {
         return userRoleRepository.findById(id);
     }
 
     @Override
-    public List<UserRole> findAllUserRoles(){
+    public List<UserRole> findAllUserRoles() {
         return userRoleRepository.findAll();
     }
 
     @Override
-    public Optional<UserRole> findUserRoleByName(String role){
+    public Optional<UserRole> findUserRoleByName(String role) {
         return userRoleRepository.findByName(role);
     }
 
     @Override
-    public boolean create(UserRole role){
+    public boolean create(UserRole role) {
         userRoleRepository.save(role);
         return true;
     }

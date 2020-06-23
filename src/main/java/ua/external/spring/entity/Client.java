@@ -75,7 +75,7 @@ public class Client implements Serializable, Cloneable {
         this.carbohydrates = NutritionCalculator.calculateCarbohydrates(nutritionGoal, dailyCalories);
     }
 
-    public static Client of(Long id, String name, Gender gender, Integer age, Double height, Double weight, NutritionGoal nutritionGoal, Activity activity, Integer calories, Double protein, Double fats, Double carbohydrates){
+    public static Client of(Long id, String name, Gender gender, Integer age, Double height, Double weight, NutritionGoal nutritionGoal, Activity activity, Integer calories, Double protein, Double fats, Double carbohydrates) {
         return Client.builder()
                 .id(id)
                 .name(name)
@@ -92,11 +92,11 @@ public class Client implements Serializable, Cloneable {
                 .build();
     }
 
-    public static Client fromDTO(ClientDTO clientDTO){
+    public static Client fromDTO(ClientDTO clientDTO) {
         return Client.of(clientDTO.getId(), clientDTO.getName(), clientDTO.getGender(), clientDTO.getAge(), clientDTO.getHeight(), clientDTO.getWeight(), clientDTO.getNutritionGoal(), clientDTO.getActivity(), clientDTO.getCalories(), clientDTO.getProtein(), clientDTO.getFats(), clientDTO.getCarbohydrates());
     }
 
-    public ClientDTO toDTO (){
+    public ClientDTO toDTO() {
         return ClientDTO.of(id, name, gender, age, height, weight, nutritionGoal, activity, calories, protein, fats, carbohydrates);
     }
 }

@@ -15,17 +15,17 @@ public class GenderService implements IGenderService {
     GenderRepository genderRepository;
 
     @Override
-    public Optional<Gender> findGenderById(Long id){
+    public Optional<Gender> findGenderById(Long id) {
         return genderRepository.findById(id);
     }
 
     @Override
-    public List<Gender> findAllGenders(){
+    public List<Gender> findAllGenders() {
         return genderRepository.findAll();
     }
 
     @Override
-    public boolean create(Gender gender){
+    public boolean create(Gender gender) {
         genderRepository.save(gender);
         return true;
     }

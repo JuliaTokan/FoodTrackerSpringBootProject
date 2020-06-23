@@ -23,7 +23,7 @@ public class UserService implements IUserService {
 
     @Override
     @Transactional
-    public boolean createUser(UserDTO user){
+    public boolean createUser(UserDTO user) {
         if (userRepository.existsByLogin(user.getLogin()))
             return false;
 
@@ -32,41 +32,41 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean updateUser(User user){
+    public boolean updateUser(User user) {
         userRepository.save(user);
         return true;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<User> findUserByLogin(String login){
+    public Optional<User> findUserByLogin(String login) {
         return userRepository.findByLogin(login);
     }
 
     @Override
     public Integer countCalories(User user) {
-        List<MealsDTO> meals =mealsService.getAllMealForUserByDate(user.getId(), LocalDate.now());
+        List<MealsDTO> meals = mealsService.getAllMealForUserByDate(user.getId(), LocalDate.now());
         Integer numOfCalories = meals.stream().mapToInt(x -> x.getProduct().getCalories() * x.getWeight() / 100).sum();
         return numOfCalories;
     }
 
     @Override
     public Integer countProtein(User user) {
-        List<MealsDTO> meals =mealsService.getAllMealForUserByDate(user.getId(), LocalDate.now());
+        List<MealsDTO> meals = mealsService.getAllMealForUserByDate(user.getId(), LocalDate.now());
         Integer numOfProtein = meals.stream().mapToInt(x -> x.getProduct().getProtein().intValue() * x.getWeight() / 100).sum();
         return numOfProtein;
     }
 
     @Override
     public Integer countFats(User user) {
-        List<MealsDTO> meals =mealsService.getAllMealForUserByDate(user.getId(), LocalDate.now());
+        List<MealsDTO> meals = mealsService.getAllMealForUserByDate(user.getId(), LocalDate.now());
         Integer numOfFats = meals.stream().mapToInt(x -> x.getProduct().getFats().intValue() * x.getWeight() / 100).sum();
         return numOfFats;
     }
 
     @Override
     public Integer countCarbohydrates(User user) {
-        List<MealsDTO> meals =mealsService.getAllMealForUserByDate(user.getId(), LocalDate.now());
+        List<MealsDTO> meals = mealsService.getAllMealForUserByDate(user.getId(), LocalDate.now());
         Integer numOfCarbohydrates = meals.stream().mapToInt(x -> x.getProduct().getCarbohydrates().intValue() * x.getWeight() / 100).sum();
         return numOfCarbohydrates;
     }

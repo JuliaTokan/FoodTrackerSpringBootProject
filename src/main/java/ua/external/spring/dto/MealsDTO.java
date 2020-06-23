@@ -26,7 +26,7 @@ public class MealsDTO {
 
     private Timestamp date;
 
-    public static MealsDTO of (Long id, Product product, User user, Integer weight, EatPeriod eatPeriod, Timestamp date){
+    public static MealsDTO of(Long id, Product product, User user, Integer weight, EatPeriod eatPeriod, Timestamp date) {
         return new MealsDTO(id, product, user, weight, eatPeriod, date);
     }
 }

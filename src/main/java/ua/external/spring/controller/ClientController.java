@@ -52,7 +52,7 @@ public class ClientController {
         if (principal instanceof UserDetails) {
             String email = ((UserDetails) principal).getUsername();
             User user = userService.findUserByLogin(email).get();
-            if (user.getClient()!=null) {
+            if (user.getClient() != null) {
                 return CL_EDIT_PAGE;
             } else {
                 return "redirect:/client/info";
@@ -71,7 +71,7 @@ public class ClientController {
             User user = userService.findUserByLogin(email).get();
             user.setClient(newCL);
             userService.updateUser(user);
-            logger.info("create client information for user with id="+user.getId());
+            logger.info("create client information for user with id=" + user.getId());
         }
         return "redirect:/";
     }
@@ -87,7 +87,7 @@ public class ClientController {
             client.setId(user.getClient().getId());
         }
         clientService.updateClient(client);
-        logger.info("update client information with id="+client.getId());
+        logger.info("update client information with id=" + client.getId());
         return "redirect:/";
     }
 

@@ -24,18 +24,6 @@ public class RestAdminController {
     @Autowired
     private UserService userService;
 
-    /*@GetMapping(value = "/get_admin_products")
-    public List<ProductDTO> getProducts(HttpSession session) {
-        List<ProductDTO> products = new ArrayList<>();
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            String email = ((UserDetails) principal).getUsername();
-            User user = userService.findUserByLogin(email).get();
-            products = productService.findAllProductsForUser(user.getId());
-        }
-        return products;
-    }*/
-
     @GetMapping(value = "/get_admin_products")
     public List<ProductDTO> getAdminProducts(@RequestParam(name = "page", required = false, defaultValue = "1") int page,
                                              @RequestParam(name = "name", required = false, defaultValue = "") String name) {
@@ -44,12 +32,12 @@ public class RestAdminController {
             String email = ((UserDetails) principal).getUsername();
             User user = userService.findUserByLogin(email).get();
 
-            if(!name.isEmpty()){
+            if (!name.isEmpty()) {
                 return productService.findAllProductsByNameForUser(user.getId(), name);
             }
 
             return productService.getProductsByPageable(user.getId(),
-                    PageRequest.of(page-1, Constant.PAGE_SIZE));
+                    PageRequest.of(page - 1, Constant.PAGE_SIZE));
         }
         return new ArrayList<>();
     }

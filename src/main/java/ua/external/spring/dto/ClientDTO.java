@@ -16,23 +16,22 @@ import javax.validation.constraints.*;
 public class ClientDTO {
     private Long id;
 
-    @NotBlank(message = "Name may not be blank")
-    @Size(min = 2, max = 32, message = "Name must be between 2 and 32 characters long")
+    @NotBlank
+    @Size(min = 2, max = 32)
     private String name;
 
     private Gender gender;
 
-    //add
     @NotNull
     @Min(value = 10)
     @Max(value = 99)
     private Integer age;
-    //add
+
     @NotNull
     @Min(value = 90)
     @Max(value = 220)
     private Double height;
-    //add
+
     @NotNull
     @Min(value = 30)
     @Max(value = 250)
@@ -47,11 +46,11 @@ public class ClientDTO {
     private Double fats;
     private Double carbohydrates;
 
-    public static ClientDTO of (Long id, String name, Gender gender, Integer age, Double height, Double weight, NutritionGoal nutritionGoal, Activity activity, Integer calories, Double protein, Double fats, Double carbohydrates){
+    public static ClientDTO of(Long id, String name, Gender gender, Integer age, Double height, Double weight, NutritionGoal nutritionGoal, Activity activity, Integer calories, Double protein, Double fats, Double carbohydrates) {
         return new ClientDTO(id, name, gender, age, height, weight, nutritionGoal, activity, calories, protein, fats, carbohydrates);
     }
 
-    public void calculateNutritions(){
+    public void calculateNutritions() {
         Integer dailyCalories = NutritionCalculator.calculateCalories(gender, weight, height, age, activity, nutritionGoal);
         this.calories = dailyCalories;
         this.protein = NutritionCalculator.calculateProtein(nutritionGoal, dailyCalories);

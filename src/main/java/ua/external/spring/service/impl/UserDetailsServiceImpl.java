@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(email + " not found");
 
         Set<GrantedAuthority> roles = new HashSet<>();
-        roles.add(new SimpleGrantedAuthority("ROLE_"+user.get().getRole().getRole()));
+        roles.add(new SimpleGrantedAuthority("ROLE_" + user.get().getRole().getRole()));
 
         return new User(user.get().getLogin(), user.get().getPassword(), roles);
     }

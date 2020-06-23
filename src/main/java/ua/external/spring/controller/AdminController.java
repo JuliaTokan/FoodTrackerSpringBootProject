@@ -15,6 +15,7 @@ import ua.external.spring.dto.ProductDTO;
 import ua.external.spring.entity.User;
 import ua.external.spring.service.impl.ProductService;
 import ua.external.spring.service.impl.UserService;
+
 import static ua.external.spring.util.сonst.Pages.*;
 
 import static ua.external.spring.util.сonst.Constant.*;
@@ -56,13 +57,13 @@ public class AdminController {
     @PostMapping(value = "/product/delete")
     public String delete(@RequestParam(name = "id") Long id) {
         productService.deleteProductById(id);
-        logger.info("delete product with id = "+id);
+        logger.info("delete product with id = " + id);
         return ADMIN_MEALS_PAGE;
     }
 
     @PostMapping(value = "/product/edit")
     public String edit(HttpServletRequest request, @Valid ProductDTO product) {
-        Boolean isPublic = request.getParameter(PARAM_PUBLIC)==null?false:request.getParameter(PARAM_PUBLIC).equals("on")?true:false;
+        Boolean isPublic = request.getParameter(PARAM_PUBLIC) == null ? false : request.getParameter(PARAM_PUBLIC).equals("on") ? true : false;
         product.setCommon(isPublic);
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -72,7 +73,7 @@ public class AdminController {
             product.setUser(user);
             product.setDeleted(false);
             productService.updateProduct(product);
-            logger.info("edit product with id = "+product.getId());
+            logger.info("edit product with id = " + product.getId());
         }
         return ADMIN_MEALS_PAGE;
     }

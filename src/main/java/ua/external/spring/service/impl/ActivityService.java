@@ -15,17 +15,17 @@ public class ActivityService implements IActivityService {
     ActivityRepository activityRepository;
 
     @Override
-    public Optional<Activity> findActivityById(Long id){
+    public Optional<Activity> findActivityById(Long id) {
         return activityRepository.findById(id);
     }
 
     @Override
-    public List<Activity> findAllActivities(){
+    public List<Activity> findAllActivities() {
         return activityRepository.findAll();
     }
 
     @Override
-    public boolean create(Activity activity){
+    public boolean create(Activity activity) {
         activityRepository.save(activity);
         return true;
     }

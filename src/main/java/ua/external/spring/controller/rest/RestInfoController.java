@@ -59,7 +59,7 @@ public class RestInfoController {
             String email = ((UserDetails) principal).getUsername();
             User user = userService.findUserByLogin(email).get();
             Client client = user.getClient();
-            return client==null?null:client.toDTO();
+            return client == null ? null : client.toDTO();
         }
         return null;
     }
@@ -96,7 +96,6 @@ public class RestInfoController {
             progress.put("currentFats", userService.countFats(user));
             progress.put("currentCarbohydrates", userService.countCarbohydrates(user));
         }
-        ObjectMapper mapper = new ObjectMapper();
         return progress;
     }
 }

@@ -20,12 +20,12 @@ public class UserDTO {
     private String login;
 
     @NotBlank
-    @Size(min = 8, max = 20, message = "Password must be between 8 and 20 characters long")
+    @Size(min = 8, max = 20)
     private String password;
 
     private UserRole role;
 
-    public static UserDTO of (Long id, String login, String password, UserRole role){
+    public static UserDTO of(Long id, String login, String password, UserRole role) {
         return new UserDTO(id, login, password, role);
     }
 }

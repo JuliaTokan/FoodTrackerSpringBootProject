@@ -20,14 +20,14 @@ public class ProductService implements IProductService {
 
     @Override
     @Transactional
-    public boolean createProduct(ProductDTO product){
+    public boolean createProduct(ProductDTO product) {
         productRepository.save(Product.fromDTO(product));
         return true;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProductDTO> findAllProductsForUser(Long userId){
+    public List<ProductDTO> findAllProductsForUser(Long userId) {
         final List<ProductDTO> result = new ArrayList<>();
         List<Product> products = productRepository.findAllByUser(userId);
 
@@ -37,21 +37,21 @@ public class ProductService implements IProductService {
 
     @Override
     @Transactional
-    public boolean updateProduct(ProductDTO product){
+    public boolean updateProduct(ProductDTO product) {
         productRepository.save(Product.fromDTO(product));
         return true;
     }
 
     @Override
     @Transactional
-    public boolean deleteProductById(Long id){
+    public boolean deleteProductById(Long id) {
         productRepository.updateDeletedProductById(id);
         return true;
     }
 
     @Override
     @Transactional
-    public List<ProductDTO> findAllProductsByNameForUser(Long userId, String name){
+    public List<ProductDTO> findAllProductsByNameForUser(Long userId, String name) {
         final List<ProductDTO> result = new ArrayList<>();
         List<Product> products = productRepository.findAllByNameForUser(userId, name);
 
@@ -60,12 +60,12 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public int getNumberOfProducts(Long userId){
+    public int getNumberOfProducts(Long userId) {
         return productRepository.getNumberOfRows(userId);
     }
 
     @Override
-    public Optional<Product> findProductById(Long id){
+    public Optional<Product> findProductById(Long id) {
         return productRepository.findById(id);
     }
 

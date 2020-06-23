@@ -68,7 +68,7 @@ public class SignController {
         }
         authWithAuthManager(request, user.getLogin(), password);
         session.setAttribute(PARAM_USER, user);
-        logger.info("create user with id = "+user.getId());
+        logger.info("create user with id = " + user.getId());
         emailService.sendWelcomeLetter(user.getLogin());
         return "redirect:/client/info";
     }

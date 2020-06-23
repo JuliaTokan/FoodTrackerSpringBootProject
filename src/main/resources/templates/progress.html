@@ -299,11 +299,10 @@
 <script src="/static/js/progressbar.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-<script>
+<script th:inline="javascript">
     var chart2el = document.getElementById("chart2").getContext('2d');
 
-    var info = '${weekInfo}';
-    alert(info);
+    var info = [[${weekInfo}]];
 
     var chart2 = new Chart(chart2el, {
         type: 'bar',

@@ -16,10 +16,10 @@ import java.util.Locale;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
     @Bean
-    public LocaleResolver localeResolver(){
+    public LocaleResolver localeResolver() {
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
         localeResolver.setDefaultLocale(Locale.US);
-        return  localeResolver;
+        return localeResolver;
     }
 
     @Bean
@@ -30,8 +30,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
     @Bean(name = "messageSource")
-    public MessageSource getMessageResource()  {
-        ReloadableResourceBundleMessageSource messageResource= new ReloadableResourceBundleMessageSource();
+    public MessageSource getMessageResource() {
+        ReloadableResourceBundleMessageSource messageResource = new ReloadableResourceBundleMessageSource();
 
         messageResource.setBasename("classpath:locale/pagecontent");
         messageResource.setDefaultEncoding("UTF-8");
@@ -39,7 +39,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
     @Override
-    public void addInterceptors(InterceptorRegistry registry){
+    public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
 

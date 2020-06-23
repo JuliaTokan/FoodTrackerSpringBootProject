@@ -1,5 +1,7 @@
 package ua.external.spring.service.impl;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -15,8 +17,10 @@ public class EmailService implements IEmailService {
     @Autowired
     private JavaMailSender sender;
 
+    final static Logger logger = LogManager.getLogger();
+
     @Override
-    public void send(String sendTo, String subject, String messageToSend){
+    public void send(String sendTo, String subject, String messageToSend) {
         try {
             MimeMessage message = sender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -27,7 +31,7 @@ public class EmailService implements IEmailService {
             sender.send(message);
         } catch (MessagingException e) {
             e.printStackTrace();
-            //logger.error("Error sending email!", e);
+            logger.error("Error sending email!", e);
         }
     }
 

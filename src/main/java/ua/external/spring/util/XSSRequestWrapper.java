@@ -31,7 +31,6 @@ public class XSSRequestWrapper extends HttpServletRequestWrapper {
     @Override
     public String getParameter(String parameter) {
         String value = super.getParameter(parameter);
-
         return stripXSS(value);
     }
 
@@ -42,8 +41,6 @@ public class XSSRequestWrapper extends HttpServletRequestWrapper {
     }
 
     private String stripXSS(String value) {
-        if(value != null)
-            System.out.println("escapeHTML work successfully and escapeHTML value is : " + StringEscapeUtils.escapeHtml(value));
         return StringEscapeUtils.escapeHtml(value);
     }
 }
