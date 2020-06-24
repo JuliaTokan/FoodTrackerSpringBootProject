@@ -46,12 +46,16 @@ public class ClientDTO {
     private Double fats;
     private Double carbohydrates;
 
-    public static ClientDTO of(Long id, String name, Gender gender, Integer age, Double height, Double weight, NutritionGoal nutritionGoal, Activity activity, Integer calories, Double protein, Double fats, Double carbohydrates) {
-        return new ClientDTO(id, name, gender, age, height, weight, nutritionGoal, activity, calories, protein, fats, carbohydrates);
+    public static ClientDTO of(Long id, String name, Gender gender, Integer age, Double height, Double weight,
+                               NutritionGoal nutritionGoal, Activity activity, Integer calories, Double protein,
+                               Double fats, Double carbohydrates) {
+        return new ClientDTO(id, name, gender, age, height, weight, nutritionGoal, activity, calories, protein, fats,
+                carbohydrates);
     }
 
     public void calculateNutritions() {
-        Integer dailyCalories = NutritionCalculator.calculateCalories(gender, weight, height, age, activity, nutritionGoal);
+        Integer dailyCalories = NutritionCalculator
+                .calculateCalories(gender, weight, height, age, activity, nutritionGoal);
         this.calories = dailyCalories;
         this.protein = NutritionCalculator.calculateProtein(nutritionGoal, dailyCalories);
         this.fats = NutritionCalculator.calculateFats(nutritionGoal, dailyCalories);

@@ -33,6 +33,7 @@ public class AdminControllerTest {
                 .param("protein", "500")
                 .param("fats", "43")
                 .param("carbohydrates", "34"))
-                .andDo(print());//.andExpect(status().is4xxClientError());
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
     }
 }

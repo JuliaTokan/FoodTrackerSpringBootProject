@@ -62,7 +62,7 @@ public class ClientController {
     }
 
     @PostMapping(value = "/info")
-    public String clientInfo(HttpServletRequest request, @Valid ClientDTO client, HttpSession session) {
+    public String clientInfo(HttpServletRequest request, @Valid ClientDTO client) {
         buildClient(request, client);
         Client newCL = clientService.createClient(client);
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
