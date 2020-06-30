@@ -33,7 +33,7 @@ public class User implements Serializable, Cloneable {
     @Column(name = "role")
     private UserRole role;
 
-    @OneToOne()
+    @OneToOne
     @JoinColumn(name = "client_id")
     private Client client;
 

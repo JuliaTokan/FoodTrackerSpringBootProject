@@ -19,7 +19,7 @@ import ua.external.spring.util.XSSRequestWrapper;
 public class XSSFilter implements Filter {
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig){
     }
 
     @Override

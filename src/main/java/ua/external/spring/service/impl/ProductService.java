@@ -50,7 +50,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<ProductDTO> findAllProductsByNameForUser(Long userId, String name) {
         final List<ProductDTO> result = new ArrayList<>();
         List<Product> products = productRepository.findAllByNameForUser(userId, name);
@@ -60,17 +60,19 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public int getNumberOfProducts(Long userId) {
         return productRepository.getNumberOfRows(userId);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<Product> findProductById(Long id) {
         return productRepository.findById(id);
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<ProductDTO> getProductsByPageable(Long userId, Pageable pageable) {
         List<ProductDTO> result = new ArrayList<>();
         List<Product> products = productRepository.findUserProductsByPage(userId, pageable).getContent();

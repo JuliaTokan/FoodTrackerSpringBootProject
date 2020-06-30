@@ -18,7 +18,7 @@ import java.io.Serializable;
 @Table(name = "clients")
 public class Client implements Serializable, Cloneable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "id", insertable = false, updatable = false, nullable = false)
     private Long id;
 

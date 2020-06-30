@@ -75,6 +75,7 @@ public class AdminController {
             productService.updateProduct(product);
             logger.info("edit product with id = " + product.getId());
         }
-        return ADMIN_MEALS_PAGE;
+        //return ADMIN_MEALS_PAGE;
+        return "redirect:/admin/products";
     }
 }

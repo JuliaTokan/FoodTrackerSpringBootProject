@@ -32,6 +32,7 @@ public class UserService implements IUserService {
     }
 
     @Override
+    @Transactional
     public boolean updateUser(User user) {
         userRepository.save(user);
         return true;
@@ -44,6 +45,7 @@ public class UserService implements IUserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Integer countCalories(User user) {
         List<MealsDTO> meals = mealsService.getAllMealForUserByDate(user.getId(), LocalDate.now());
         Integer numOfCalories = meals.stream().mapToInt(x -> x.getProduct().getCalories() * x.getWeight() / 100).sum();
@@ -51,6 +53,7 @@ public class UserService implements IUserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Integer countProtein(User user) {
         List<MealsDTO> meals = mealsService.getAllMealForUserByDate(user.getId(), LocalDate.now());
         Integer numOfProtein = meals.stream().mapToInt(x -> x.getProduct().getProtein().intValue() * x.getWeight() / 100).sum();
@@ -58,6 +61,7 @@ public class UserService implements IUserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Integer countFats(User user) {
         List<MealsDTO> meals = mealsService.getAllMealForUserByDate(user.getId(), LocalDate.now());
         Integer numOfFats = meals.stream().mapToInt(x -> x.getProduct().getFats().intValue() * x.getWeight() / 100).sum();
@@ -65,6 +69,7 @@ public class UserService implements IUserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Integer countCarbohydrates(User user) {
         List<MealsDTO> meals = mealsService.getAllMealForUserByDate(user.getId(), LocalDate.now());
         Integer numOfCarbohydrates = meals.stream().mapToInt(x -> x.getProduct().getCarbohydrates().intValue() * x.getWeight() / 100).sum();

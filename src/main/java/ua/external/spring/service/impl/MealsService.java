@@ -2,6 +2,7 @@ package ua.external.spring.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.external.spring.dto.MealsDTO;
 import ua.external.spring.entity.Meals;
 import ua.external.spring.repository.MealsRepository;
@@ -17,12 +18,14 @@ public class MealsService implements IMealsService {
     MealsRepository mealsRepository;
 
     @Override
+    @Transactional
     public boolean createMeals(MealsDTO meals) {
         mealsRepository.save(Meals.fromDTO(meals));
         return true;
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<MealsDTO> getAllMealForUser(Long userId) {
         final List<MealsDTO> result = new ArrayList<>();
         List<Meals> meals = mealsRepository.findAllByUser(userId);
@@ -32,12 +35,14 @@ public class MealsService implements IMealsService {
     }
 
     @Override
+    @Transactional
     public boolean deleteMealsById(Long id) {
         mealsRepository.deleteById(id);
         return true;
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<MealsDTO> getAllMealForUserByDate(Long userId, LocalDate date) {
         final List<MealsDTO> result = new ArrayList<>();
         List<Meals> meals = mealsRepository.findAllByUserAndDay(userId, date.toString());

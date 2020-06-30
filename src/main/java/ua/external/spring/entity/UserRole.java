@@ -17,8 +17,7 @@ public class UserRole implements Serializable, Cloneable {
     @Column(name = "id", insertable = false, updatable = false, nullable = false)
     private Long id;
 
-    @NonNull
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     private String role;
 
 
